@@ -43,8 +43,8 @@ Example:
 }
 #Syntax
 1)add
-add description
-example: add do homework today
+- Synatx: add description
+Example: add do homework today
 
 2) list
    - Synatx: list status
