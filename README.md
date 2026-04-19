@@ -41,26 +41,32 @@ Example:
     "Status": "todo"
   }
 }
-#Syntax
+---
+##Syntax
 1)add
 - Synatx: add description
+---
 Example: add do homework today
 
 2) list
    - Synatx: list status
+   ---
    -Examples:
    list todo
    list done
 3) update
     - Synatx: update id new description
+    ---
    Example:
    update 1 finish assignment
 4) mark
     - Synatx: mark id status
+   ---
    Examples:
    mark 1 done
    mark 2 todo
 5) delete
     - Synatx: delete id
+   ---
    Example:
    delete 1
