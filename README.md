@@ -1,12 +1,20 @@
 # task-manaagement-with-json-as-storage
-This program helps youu store your tasks in a json file the syntax for this CLI based program is given below:
+A simple command-line based task manager built using Python and JSON for storage.  
+This project allows you to create, update, delete, and manage tasks directly from the terminal.
 
-1)ADD
-To add a task simply type add then the task name after a space there must be no spaces in the name
-Examples:
-add pushups
-add buy_groceries
-2)List
-you can list all tasks and tasks based on the status
-3)Mark
-4)Delete
+---
+
+## 🚀 Features
+
+- Add new tasks
+- List all tasks
+- Filter tasks by status
+- Update task descriptions
+- Mark tasks as done/todo
+- Delete tasks
+- Persistent storage using JSON
+
+---
+
+## 📁 File Structure
+
