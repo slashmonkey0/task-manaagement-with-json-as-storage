@@ -42,7 +42,7 @@ Example:
   }
 }
 ---
-##Syntax
+## Syntax
 1)add
 - Synatx: add description
 ---
