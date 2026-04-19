@@ -12,7 +12,7 @@ def making_task(description):
     id_found=False
 
     for id in range(1,200):
-        if id in data:
+        if str(id) in data:
             continue
         else:
             id_found=True
@@ -27,7 +27,7 @@ def making_task(description):
     updated_date=datetime.today().strftime("%y-%m-%d")
     task.append(created_date)
     task.append(updated_date)
-    task.append("not done")
+    task.append("todo")
     return task
     
 def add_task(words):
@@ -58,18 +58,11 @@ def list_tasks():
     for key, value in data.items():
         print(f"{key}: {value}")
 
-def list_tasks_todo():
+def list_tasks_status(status):
     file=open("Tasks.json","r")
     data=json.load(file)  
     for key, value in data.items():
-        if value["Status"]=="in-progress":
-            print(f"{key}: {value}")
-
-def list_tasks_done():
-    file=open("Tasks.json","r")
-    data=json.load(file)  
-    for key, value in data.items():
-        if value["Status"]=="done":
+        if value["Status"]==status:
             print(f"{key}: {value}")
     
 def list_tasks_todo():
@@ -82,9 +75,9 @@ def list_tasks_todo():
 def mark_task(id,status):
     with open("Tasks.json", "r") as file:
         data=json.load(file)
-    if id in data:
-        data[id]["Status"]=status
-        data[id]["updated_date"]=datetime.today().strftime("%y-%m-%d")
+    if str(id) in data:
+        data[str(id)]["Status"]=status
+        data[str(id)]["updated_date"]=datetime.today().strftime("%y-%m-%d")
     else:
         print("Task not found")
         return None
@@ -94,8 +87,8 @@ def mark_task(id,status):
 def delete_task(id):
     with open("Tasks.json","r") as file:
         data= json.load(file)
-    if id in data:
-        del data[id]
+    if str(id) in data:
+        del data[str(id)]
     else:
         print("Task not found")
         return None
@@ -105,9 +98,9 @@ def delete_task(id):
 def update_task(id,description):
     with open("Tasks.json","r") as file:
         data=json.load(file)
-    if id in data:
-        data[id]["description"]=description
-        data[id]["updated_date"]=datetime.today().strftime("%y-%m-%d")
+    if str(id) in data:
+        data[str(id)]["description"]=description
+        data[str(id)]["updated_date"]=datetime.today().strftime("%y-%m-%d")
     else:
         print("Task not found")
         return None
@@ -120,13 +113,10 @@ while True:
     if words[0] == "add":
         add_task(words)
     elif words[0] == "list":
-        list_tasks()
-    elif words == "list in-progress":
-        list_tasks_todo()
-    elif words== "list done":
-        list_tasks_done()
-    elif words == "list todo":
-        list_tasks_todo()
+        if len(words)==1:
+            list_tasks()
+        else:
+            list_tasks_status(words[1])
     elif words[0]=="delete":
         delete_task(words[1])
     elif words[0] == "mark":
