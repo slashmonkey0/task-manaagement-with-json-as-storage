@@ -37,6 +37,8 @@ def making_task(words):
     
 def add_task(words):
     task=making_task(words)
+    if task is None:
+        return None
     with open("Tasks.json", "r") as file:
         try:
             data=json.load(file)
