@@ -17,4 +17,50 @@ This project allows you to create, update, delete, and manage tasks directly fro
 ---
 
 ## 📁 File Structure
+- Tasks.json # Stores all tasks
+- main.py # Your Python script
+-  README.md
 
+---
+
+## ⚙️ How It Works
+
+- Tasks are stored in `Tasks.json` as key-value pairs
+- Each task has:
+  - `description`
+  - `Created_Date`
+  - `updated_date`
+  - `Status`
+
+Example:
+{
+  "1": {
+    "description": "do homework",
+    "Created_Date": "24-04-19",
+    "updated_date": "24-04-19",
+    "Status": "todo"
+  }
+}
+#Syntax
+1)add
+add description
+example: add do homework today
+
+2) list
+   list status
+   Examples:
+   list todo
+   list done
+3) update
+   update id new description
+   Example:
+   update 1 finish assignment
+4) mark
+   mark id status
+   Examples:
+   mark 1 done
+   mark 2 todo
+5) delete
+   delete id
+   Example:
+   delete 1
