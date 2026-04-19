@@ -1,8 +1,13 @@
 import json
 import os
 from datetime import datetime
+if os.path.exists("Tasks.json"):
+    pass
+else:
+    with open("Tasks.json", "w") as file:
+        json.dump({}, file)
 
-def making_task(description):
+def making_task(words):
     task=[]
     with open("Tasks.json", "r") as file:
         try:
@@ -22,7 +27,7 @@ def making_task(description):
         return None
 
     task.append(id)
-    task.append(description)
+    task.append(" ".join(words[1:]))
     created_date=datetime.today().strftime("%y-%m-%d")
     updated_date=datetime.today().strftime("%y-%m-%d")
     task.append(created_date)
@@ -31,13 +36,7 @@ def making_task(description):
     return task
     
 def add_task(words):
-    if os.path.exists("Tasks.json"):
-        pass
-    else:
-        with open("Tasks.json", "w") as file:
-            json.dump({}, file)
-
-    task=making_task(words[1])
+    task=making_task(words)
     with open("Tasks.json", "r") as file:
         try:
             data=json.load(file)
@@ -53,28 +52,23 @@ def add_task(words):
         json.dump(data, file)
 
 def list_tasks():
-    file=open("Tasks.json","r")
-    data=json.load(file)  
+    with open("Tasks.json", "r") as file:
+        data=json.load(file)
     for key, value in data.items():
         print(f"{key}: {value}")
 
-def list_tasks_status(status):
-    file=open("Tasks.json","r")
-    data=json.load(file)  
+def list_tasks_status(words):
+    status=" ".join(words[1:])
+    with open("Tasks.json", "r") as file:
+        data=json.load(file)  
     for key, value in data.items():
         if value["Status"]==status:
             print(f"{key}: {value}")
-    
-def list_tasks_todo():
-    file=open("Tasks.json","r")
-    data=json.load(file)  
-    for key, value in data.items():
-        if value["Status"]=="todo":
-            print(f"{key}: {value}")
         
-def mark_task(id,status):
+def mark_task(id,words):
     with open("Tasks.json", "r") as file:
         data=json.load(file)
+    status=" ".join(words[2:])
     if str(id) in data:
         data[str(id)]["Status"]=status
         data[str(id)]["updated_date"]=datetime.today().strftime("%y-%m-%d")
@@ -95,9 +89,10 @@ def delete_task(id):
     with open("Tasks.json","w") as file:
         json.dump(data,file)
 
-def update_task(id,description):
+def update_task(id,words):
     with open("Tasks.json","r") as file:
         data=json.load(file)
+    description=" ".join(words[2:])
     if str(id) in data:
         data[str(id)]["description"]=description
         data[str(id)]["updated_date"]=datetime.today().strftime("%y-%m-%d")
@@ -116,13 +111,13 @@ while True:
         if len(words)==1:
             list_tasks()
         else:
-            list_tasks_status(words[1])
+            list_tasks_status(words)
     elif words[0]=="delete":
         delete_task(words[1])
     elif words[0] == "mark":
-        mark_task(words[1],words[2])
+        mark_task(words[1],words)
     elif words[0] == "update":
-        update_task(words[1],words[2])
+        update_task(words[1],words)
     elif words[0] == "exit":
         break
         
