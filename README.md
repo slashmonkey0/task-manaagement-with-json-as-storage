@@ -47,20 +47,20 @@ add description
 example: add do homework today
 
 2) list
-   list status
-   Examples:
+   - Synatx: list status
+   -Examples:
    list todo
    list done
 3) update
-   update id new description
+    - Synatx: update id new description
    Example:
    update 1 finish assignment
 4) mark
-   mark id status
+    - Synatx: mark id status
    Examples:
    mark 1 done
    mark 2 todo
 5) delete
-   delete id
+    - Synatx: delete id
    Example:
    delete 1
