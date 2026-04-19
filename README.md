@@ -49,7 +49,9 @@ Example:
 Example: add do homework today
 
 2) list
-   - Synatx: list status
+   - Synatx:
+   - list 
+   - list status
    ---
    -Examples:
    list todo
